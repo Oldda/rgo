@@ -1,0 +1,9 @@
+{
+	"mysql":{
+		"db_host":"localhost",
+		"db_port":"3308",
+		"db_user":"root",
+		"db_password":"Aa890223",
+		"db_name":"demo"
+	}
+}

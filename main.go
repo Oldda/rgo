@@ -5,16 +5,45 @@ import(
 	"rgo/rgo/http"
 	"rgo/rgo/viper"
 	"rgo/rgo/websocket"
+	"rgo/rgo/database"
 	"log"
 )
 
-func main(){
-	os.Setenv("RGO_RUNMOD","dev")
+func getServerAddr()string{
 	config := viper.NewConfig("application","json")
 	host := config.GetString("server.host")
 	port := config.GetString("server.port")
-	r := http.Default()
+	return host+":"+port
+}
 
+func initMysqlEngine(){
+	err := database.NewMysqlEngine()
+	if err != nil{
+		log.Println("mysql init error:" + err.Error())
+	}
+}
+
+type UserModel struct{
+	ID uint `gorm:"column:id;primaryKey"`
+	Name string `gorm:"column:name" json:"name"`
+	CreateTime int `gorm:"autoCreateTime;column:createtime" json:"create_time"`
+	UpdateTime int `gorm:"autoUpdateTime;column:updatetime" json:"update_time"`
+	DeleteTime int `gorm:"autoDeleteTime;column:deletetime" json:"delete_time"`
+}
+
+func(user *UserModel)TableName()string{
+	return "users"
+}
+
+func main(){
+	//设置临时运行环境
+	os.Setenv("RGO_RUNMOD","dev")
+	//获取配置服务地址
+	addr := getServerAddr()
+	//初始化数据库连接池
+	initMysqlEngine()
+	//设置并启动http服务
+	r := http.Default()
 	r.StaticFile("/favicon.ico","./public/static/images/favicon.ico")
 	r.GET("/",Index)
 	user := r.Group("/user")
@@ -23,13 +52,15 @@ func main(){
 		user.GET("/:name",User)
 		user.GET("/ws",Ws)
 	}
-	r.Run(host+":"+port)
+	r.Run(addr)
 }
 
 func Index(ctx *http.Context){
-	ctx.JSON(200,http.H{
-		"name":"ll",
-	})
+	user := new(UserModel)
+	user.Name = "oldda"
+	database.MysqlEngine.Create(user)
+	database.MysqlEngine.Find(user)
+	ctx.JSON(200,user)
 }
 
 func User(ctx *http.Context){
