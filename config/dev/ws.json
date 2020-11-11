@@ -1,0 +1,9 @@
+{
+	"origin_allowed" : [
+	
+	],
+	"read_buffer_size" : 1024,
+	"write_buffer_size" : 1024,
+	"heartbeat_frequency" : 10,
+	"max_message_size":2048
+}
