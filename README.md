@@ -14,4 +14,8 @@
 # database
 第一版本仅根据gorm封装了mysql引擎。后续会有mongodb，redis，elasticsearch等。
 
-#待续...
+# images
+图像处理包。 该包的实现类似一张工作桌，将图片和文字作为素材管理。
+功能包括：图片合成，水印，裁剪，缩放，灰度。
+
+# 待续...

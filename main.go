@@ -6,6 +6,7 @@ import(
 	"rgo/rgo/viper"
 	"rgo/rgo/websocket"
 	"rgo/rgo/database"
+	"rgo/rgo/images"
 	"log"
 )
 
@@ -36,6 +37,11 @@ func(user *UserModel)TableName()string{
 }
 
 func main(){
+	
+	//图片
+	canvas := images.NewCanvas()
+	canvas.AddImageElement("1.jpg",true)
+	canvas.ToGray("11.jpg")
 	//设置临时运行环境
 	os.Setenv("RGO_RUNMOD","dev")
 	//获取配置服务地址
