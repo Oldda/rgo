@@ -12,6 +12,7 @@
 简单封装，根据viper13实现的配置处理。
 
 # database
+redis引擎
 第一版本仅根据gorm封装了mysql引擎。后续会有mongodb，redis，elasticsearch等。
 
 # images
