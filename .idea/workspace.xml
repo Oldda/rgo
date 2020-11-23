@@ -2,33 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42fee99b-b855-4e7c-ba58-ffd0728fa376" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/rgo/database/mysql/mysql.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rgo/database/redis/logger.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rgo/database/redis/result.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rgo/database/redis/string.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/dev/database.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/dev/database.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/database/mysql_engine.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/http/context.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/http/context.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/http/logger.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/http/logger.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/http/recovery.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/http/recovery.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/http/rgo.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/http/rgo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/http/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/http/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/http/router_group.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/http/router_group.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/http/tree.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/http/tree.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/images/canvas.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/images/canvas.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/images/io.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/images/io.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/images/logger.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/images/logger.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/images/picture.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/images/picture.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/images/text.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/images/text.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/viper/viper.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/viper/viper.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/websocket/conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/websocket/conn.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgo/websocket/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgo/websocket/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rgo/database/redis/logger.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rgo/database/redis/result.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rgo/database/redis/string.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
