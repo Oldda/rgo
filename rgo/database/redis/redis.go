@@ -20,7 +20,7 @@ var (
 
 /**
 单例初始化一个redis引擎
- */
+*/
 func Redis() (*redis.Client, error) {
 	redisOnce.Do(func() {
 		config := viper.NewConfig("database", "json")
