@@ -1,9 +1,9 @@
 package http
 
-import(
+import (
 	"log"
-	"path"
 	"net/http"
+	"path"
 	"strings"
 )
 
@@ -11,7 +11,7 @@ type RouterGroup struct {
 	prefix      string
 	middlewares []HandlerFunc // support middleware
 	parent      *RouterGroup  // support nesting
-	rgoHttp      *RgoHttp       // all groups share a Engine instance
+	rgoHttp     *RgoHttp      // all groups share a Engine instance
 }
 
 // Group is defined to create a new RouterGroup
@@ -19,13 +19,14 @@ type RouterGroup struct {
 func (group *RouterGroup) Group(prefix string) *RouterGroup {
 	rgoHttp := group.rgoHttp
 	newGroup := &RouterGroup{
-		prefix: group.prefix + prefix,
-		parent: group,
+		prefix:  group.prefix + prefix,
+		parent:  group,
 		rgoHttp: rgoHttp,
 	}
 	rgoHttp.groups = append(rgoHttp.groups, newGroup)
 	return newGroup
 }
+
 // Use is defined to add middleware to the group
 func (group *RouterGroup) Use(middlewares ...HandlerFunc) {
 	group.middlewares = append(group.middlewares, middlewares...)

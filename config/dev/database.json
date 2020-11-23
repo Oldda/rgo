@@ -5,5 +5,12 @@
 		"db_user":"root",
 		"db_password":"Aa890223",
 		"db_name":"demo"
+	},
+
+	"redis":{
+		"db_host": "localhost",
+		"db_port": "6379",
+		"db_password": "",
+		"db_name": "0"
 	}
 }

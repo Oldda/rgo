@@ -12,18 +12,17 @@ import (
 )
 
 var (
-	wsConfig = viper.NewConfig("ws","json")
-	heartBeat = time.Duration(wsConfig.GetInt64("heartbeat_frequency"))
-	msgSize = wsConfig.GetInt64("max_message_size")
-	readBuffer = wsConfig.GetInt("read_buffer_size")
+	wsConfig    = viper.NewConfig("ws", "json")
+	heartBeat   = time.Duration(wsConfig.GetInt64("heartbeat_frequency"))
+	msgSize     = wsConfig.GetInt64("max_message_size")
+	readBuffer  = wsConfig.GetInt("read_buffer_size")
 	writeBuffer = wsConfig.GetInt("write_buffer_size")
-	origin,_ = wsConfig.Get("origin_allowed").([]string)
+	origin, _   = wsConfig.Get("origin_allowed").([]string)
 )
-
 
 var (
 	// 写入超时时间s
-	writeWait = heartBeat/2 * time.Second
+	writeWait = heartBeat / 2 * time.Second
 
 	// 读取pong消息的超时时间
 	pongWait = (heartBeat + 3) * time.Second
@@ -44,11 +43,11 @@ var upgrader = websocket.Upgrader{
 	ReadBufferSize:  readBuffer,
 	WriteBufferSize: writeBuffer,
 	CheckOrigin: func(r *http.Request) bool {
-		if origin == nil || len(origin) < 1{
+		if origin == nil || len(origin) < 1 {
 			return true
 		}
-		for _,v := range origin{
-			if r.URL.Path == v{
+		for _, v := range origin {
+			if r.URL.Path == v {
 				return true
 			}
 		}
@@ -58,13 +57,12 @@ var upgrader = websocket.Upgrader{
 
 type openHandler func(*WsConn)
 
-type messageHandler func(*WsConn,[]byte)
+type messageHandler func(*WsConn, []byte)
 
-type closeHandler func(*WsConn,error)
+type closeHandler func(*WsConn, error)
 
 // 接入的单条链接
 type WsConn struct {
-
 	svr *WsServer
 
 	conn *websocket.Conn
@@ -77,15 +75,15 @@ type WsConn struct {
 }
 
 //初始化一个client对象
-func NewWsConn(svr *WsServer)*WsConn{
+func NewWsConn(svr *WsServer) *WsConn {
 	return &WsConn{
-		svr:svr,
-		send:make(chan []byte,256),
+		svr:  svr,
+		send: make(chan []byte, 256),
 	}
 }
 
 //设置OPEN回调函数
-func(this *WsConn)OnOpen(w http.ResponseWriter, r *http.Request, handler openHandler){
+func (this *WsConn) OnOpen(w http.ResponseWriter, r *http.Request, handler openHandler) {
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println(err)
@@ -101,18 +99,18 @@ func(this *WsConn)OnOpen(w http.ResponseWriter, r *http.Request, handler openHan
 }
 
 //设置MESSAGE回调函数
-func(this *WsConn)OnMessage(handler messageHandler){
+func (this *WsConn) OnMessage(handler messageHandler) {
 	this.messageHandler = handler
 }
 
 //设置CLOSE回调函数
-func(this *WsConn)OnClose(handler closeHandler){
+func (this *WsConn) OnClose(handler closeHandler) {
 	this.closeHandler = handler
 }
 
 //发送消息
-func(this *WsConn)Send(msg []byte){
-	this.send<-msg
+func (this *WsConn) Send(msg []byte) {
+	this.send <- msg
 }
 
 //读取客户端消息
@@ -127,22 +125,22 @@ func (this *WsConn) readPump() {
 	for {
 		//ReadMessage()该操作会阻塞线程所以建议运行在其他协程上
 		_, message, err := this.conn.ReadMessage()
-		
+
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err) {
-				this.closeHandler(this,err)
+				this.closeHandler(this, err)
 			}
 			log.Println(err)
 			return
 		}
 		//客户端心跳
-		if string(message) == "ping"{
+		if string(message) == "ping" {
 			this.send <- []byte("pong")
 			continue
 		}
 		message = bytes.TrimSpace(bytes.Replace(message, newline, space, -1))
 		//this.svr.broadcast <- message
-		this.messageHandler(this,message)
+		this.messageHandler(this, message)
 	}
 }
 

@@ -1,11 +1,10 @@
 package websocket
 
-import(
+import (
 	"errors"
 )
 
 type WsServer struct {
-
 	clients map[*WsConn]bool //链接
 
 	broadcast chan []byte //广播通道
@@ -25,18 +24,18 @@ func NewWsServer() *WsServer {
 }
 
 //获取链接总数
-func(this *WsServer)Statistic()int{
+func (this *WsServer) Statistic() int {
 	return len(this.clients)
 }
 
 //广播消息
-func (this *WsServer)Broadcast(msg []byte){
-	this.broadcast<-msg
+func (this *WsServer) Broadcast(msg []byte) {
+	this.broadcast <- msg
 }
 
 //单发消息
-func(this *WsServer)SendTo(cli *WsConn,msg []byte)error{
-	if has,ok := this.clients[cli];has && ok{
+func (this *WsServer) SendTo(cli *WsConn, msg []byte) error {
+	if has, ok := this.clients[cli]; has && ok {
 		cli.Send(msg)
 	}
 	return errors.New("不存在的链接")
@@ -51,7 +50,7 @@ func (this *WsServer) Run() {
 		case client := <-this.unregister: //注销
 			if _, ok := this.clients[client]; ok {
 				delete(this.clients, client) //移除此条链接
-				close(client.send)//关闭此条链接通道
+				close(client.send)           //关闭此条链接通道
 			}
 
 		case message := <-this.broadcast: //广播
