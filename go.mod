@@ -1,4 +1,4 @@
-module https://github.com/Oldda/rgo
+module rgo
 
 go 1.13
 
