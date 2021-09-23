@@ -8,6 +8,7 @@ require (
 	github.com/gorilla/websocket v1.4.2
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646
 	github.com/spf13/viper v1.7.1
+	github.com/tealeg/xlsx v1.0.5 // indirect
 	gorm.io/driver/mysql v1.0.3
 	gorm.io/gorm v1.20.6
 )
